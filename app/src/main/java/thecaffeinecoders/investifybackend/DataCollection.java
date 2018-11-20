@@ -10,6 +10,7 @@ public class DataCollection {
     static ArrayList<CompanyData> listObjAllCompanies = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
+/*
 
         CompanyData objLynx = Lynx.getObj();
         CompanyData objExcaliburfonder = Excaliburfonder.getObj();
@@ -18,6 +19,11 @@ public class DataCollection {
         listObjAllCompanies.add(objLynx);
         listObjAllCompanies.add(objExcaliburfonder);
         listObjAllCompanies.add(objCrescit);
+*/
+
+        listObjAllCompanies.add(Lynx.getObj());
+        listObjAllCompanies.add(Excaliburfonder.getObj());
+        listObjAllCompanies.add(Crescit.getObj());
 
     }
 }
