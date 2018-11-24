@@ -1,19 +1,39 @@
+
+/* Pull data from Excaliburfonder */
+
 package thecaffeinecoders.investifybackend;
+
+import android.app.Activity;
+import android.view.View;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class Excaliburfonder {
 
-    public static CompanyData getObj() throws IOException{
+    public static CompanyData getObj(Activity a, View view) throws IOException{
+
+
+        int currMnth = 0;
+
+        String currMnthValue = null,currYear = null;
+
+        /* Assign Company name,description,Logo Link
+         */
+
         String name = ("Excaliburfonder");
         String description = ("Fund company under supervision of the Swedish Financial Supervisory Authority");
 
+        String logoLink = ("https://firebasestorage.googleapis.com/v0/b/investify-2019.appspot.com/o/excalibur_fonder.png?alt=media&token=f190c5c5-2674-480b-914e-5a2855bd9a02");
+
         String Excalibur = "https://excaliburfonder.se/en/funds/excalibur/performance/";
+
+
         Document document = Jsoup.connect(Excalibur).get();
 
         String ExcaliburPerformance = document.select("tbody").text();
@@ -29,21 +49,38 @@ public class Excaliburfonder {
 
             ArrayList<String> strMonthsList = new ArrayList<>();
 
+
             String year = (sl[i]);
-            strMonthsList.add(sl[i + 1]);
-            strMonthsList.add(sl[i + 2]);
-            strMonthsList.add(sl[i + 3]);
-            strMonthsList.add(sl[i + 4]);
-            strMonthsList.add(sl[i + 5]);
-            strMonthsList.add(sl[i + 6]);
-            strMonthsList.add(sl[i + 7]);
-            strMonthsList.add(sl[i + 8]);
-            strMonthsList.add(sl[i + 9]);
-            strMonthsList.add(sl[i + 10]);
-            strMonthsList.add("0");
-            strMonthsList.add("0");
+            strMonthsList.add(sl[i + 1].replace(",","."));
+            strMonthsList.add(sl[i + 2].replace(",","."));
+            strMonthsList.add(sl[i + 3].replace(",","."));
+            strMonthsList.add(sl[i + 4].replace(",","."));
+            strMonthsList.add(sl[i + 5].replace(",","."));
+            strMonthsList.add(sl[i + 6].replace(",","."));
+            strMonthsList.add(sl[i + 7].replace(",","."));
+            strMonthsList.add(sl[i + 8].replace(",","."));
+            strMonthsList.add(sl[i + 9].replace(",","."));
+            strMonthsList.add(sl[i + 10].replace(",","."));
+            strMonthsList.add("0".replace(",","."));
+            strMonthsList.add("0".replace(",","."));
 
             perfValues.put(year, strMonthsList);
+
+
+            Calendar cal = Calendar.getInstance();
+            currMnth = cal.get(Calendar.MONTH);
+            currYear = String.valueOf(cal.get(Calendar.YEAR));
+
+
+            //* Take the current month data from the Arraylist
+
+            for(int cnt=0;cnt<strMonthsList.size();cnt++)
+            {
+                if (currMnth == cnt)
+                {
+                    currMnthValue = strMonthsList.get(cnt);
+                }
+            }
 
         }
 
@@ -52,18 +89,18 @@ public class Excaliburfonder {
             ArrayList<String> strMonthsList = new ArrayList<>();
 
             String year = (sl[i]);
-            strMonthsList.add(sl[i + 1]);
-            strMonthsList.add(sl[i + 2]);
-            strMonthsList.add(sl[i + 3]);
-            strMonthsList.add(sl[i + 4]);
-            strMonthsList.add(sl[i + 5]);
-            strMonthsList.add(sl[i + 6]);
-            strMonthsList.add(sl[i + 7]);
-            strMonthsList.add(sl[i + 8]);
-            strMonthsList.add(sl[i + 9]);
-            strMonthsList.add(sl[i + 10]);
-            strMonthsList.add(sl[i + 11]);
-            strMonthsList.add(sl[i + 12]);
+            strMonthsList.add(sl[i + 1].replace(",","."));
+            strMonthsList.add(sl[i + 2].replace(",","."));
+            strMonthsList.add(sl[i + 3].replace(",","."));
+            strMonthsList.add(sl[i + 4].replace(",","."));
+            strMonthsList.add(sl[i + 5].replace(",","."));
+            strMonthsList.add(sl[i + 6].replace(",","."));
+            strMonthsList.add(sl[i + 7].replace(",","."));
+            strMonthsList.add(sl[i + 8].replace(",","."));
+            strMonthsList.add(sl[i + 9].replace(",","."));
+            strMonthsList.add(sl[i + 10].replace(",","."));
+            strMonthsList.add(sl[i + 11].replace(",","."));
+            strMonthsList.add(sl[i + 12].replace(",","."));
 
 
 
@@ -72,12 +109,27 @@ public class Excaliburfonder {
         }
 
 
-        CompanyData companyData = new CompanyData(name, description, perfValues);
+
+        /* Update  only the  current month data into firebase */
+
+        final CompanyData companyData = new CompanyData(description,logoLink,perfValues);
+
+        if (view.getId() == R.id.button2){
+
+            UpdateFirebase.updateMonth(name,perfValues,currYear, currMnthValue,currMnth, a);
+
+        }
+        /* Update data into firebase */
+
+        else if (view.getId() == R.id.button3){
+            UpdateFirebase.update(name,description,logoLink,companyData,a);
+        }
 
         return companyData;
     }
 
+    }
 
-}
+
 
 
