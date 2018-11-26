@@ -54,7 +54,7 @@ public class UpdateFirebase {
 
      */
 
-    public static void update(String name, String description, String logoLink, CompanyData companyData, final Activity a)
+    public static void update(String name, String description, String logoLink,String url, CompanyData companyData, final Activity a)
 
     {
     final CompanyData lv_companyData = companyData;

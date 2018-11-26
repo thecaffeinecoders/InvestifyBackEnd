@@ -25,7 +25,13 @@ public class Crescit {
         String currMnthValue = null,currYear = null;
 
         String name = ("Crescit");
-        String description = ("Big Asset Management");
+
+        String url = "http://www.crescit.se/ ";
+
+        String description = "We are an independent fund company that is under the supervision of the Swedish Financial Supervisory Authority." +
+                "The daily operations are conducted at Birger Jarlsgatan 8 in Stockholm since April 2013, where we manage the hedge fund Crescit." +
+                "Since April 2014 Crescit Asset Management AB has the new AIFMD-permission. The fund passed 1 billion of assets under management during it’s first operating year.";
+
         String logoLink = ("https://firebasestorage.googleapis.com/v0/b/investify-2019.appspot.com/o/logotype.png?alt=media&token=b19f4103-ebfb-43ae-b696-51ac92d8b6b2");
 
 
@@ -131,7 +137,7 @@ public class Crescit {
 
         /* Update  only the  current month data into firebase */
 
-        final CompanyData companyData = new CompanyData(description,logoLink,perfValues);
+        final CompanyData companyData = new CompanyData(description,logoLink,url,perfValues);
 
         if (view.getId() == R.id.button2){
 
@@ -141,7 +147,7 @@ public class Crescit {
         /* Update data into firebase */
 
         else if (view.getId() == R.id.button3){
-            UpdateFirebase.update(name,description,logoLink,companyData,a);
+            UpdateFirebase.update(name,description,logoLink,url,companyData,a);
         }
 
         return companyData;

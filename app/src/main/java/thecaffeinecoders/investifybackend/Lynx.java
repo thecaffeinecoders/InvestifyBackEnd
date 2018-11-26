@@ -32,6 +32,8 @@ public class Lynx {
 
          */
         String name = ("Lynx");
+        String url = "http://www.lynxhedge.se/";
+
         String description = ("Lynx Asset Management was founded in 1999 and is today one of the world's leading firms in model-based asset management." +
                 "Our investment process is entirely systematic and based on proprietary developed models that identify trends and other patterns in financial markets. Our objective is to deliver high risk-adjusted returns with low correlation to traditional asset classes.");
 
@@ -126,7 +128,7 @@ public class Lynx {
 
         /* Update  only the  current month data into firebase */
 
-         final CompanyData companyData = new CompanyData(description,logoLink,perfValues);
+         final CompanyData companyData = new CompanyData(description,logoLink,url,perfValues);
 
         if (view.getId() == R.id.button2){
 
@@ -136,7 +138,7 @@ public class Lynx {
         /* Update data into firebase */
 
         else if (view.getId() == R.id.button3){
-            UpdateFirebase.update(name,description,logoLink,companyData,a);
+            UpdateFirebase.update(name,description,logoLink,url,companyData,a);
         }
 
             return companyData;

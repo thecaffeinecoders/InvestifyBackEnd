@@ -27,7 +27,12 @@ public class Excaliburfonder {
          */
 
         String name = ("Excaliburfonder");
-        String description = ("Fund company under supervision of the Swedish Financial Supervisory Authority");
+
+        String url = "https://excaliburfonder.se/en/";
+
+        String description = "It is a small independent fund management company that manages, administers and controls the Excalibur and Trude hedge funds." +
+                "With the help of international contacts and a well-established network within the banking industry, together with the use of independent analysis from well renowned firms such as BCA, Roubini Global Economics, Pantheon Macroeconomics, SGH Macro Advisors and Medley Global Advisors, we have laid the foundation for successful asset management.";
+
 
         String logoLink = ("https://firebasestorage.googleapis.com/v0/b/investify-2019.appspot.com/o/excalibur_fonder.png?alt=media&token=f190c5c5-2674-480b-914e-5a2855bd9a02");
 
@@ -112,7 +117,7 @@ public class Excaliburfonder {
 
         /* Update  only the  current month data into firebase */
 
-        final CompanyData companyData = new CompanyData(description,logoLink,perfValues);
+        final CompanyData companyData = new CompanyData(description,logoLink,url,perfValues);
 
         if (view.getId() == R.id.button2){
 
@@ -122,7 +127,7 @@ public class Excaliburfonder {
         /* Update data into firebase */
 
         else if (view.getId() == R.id.button3){
-            UpdateFirebase.update(name,description,logoLink,companyData,a);
+            UpdateFirebase.update(name,description,logoLink,url,companyData,a);
         }
 
         return companyData;

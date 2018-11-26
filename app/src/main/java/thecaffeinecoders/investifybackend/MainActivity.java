@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-           //         CompanyData objLynx = Lynx.getObj(MainActivity.this,view);
+                    CompanyData objLynx = Lynx.getObj(MainActivity.this,view);
                     CompanyData objexca = Excaliburfonder.getObj(MainActivity.this,view);
                     CompanyData objCrescit = Crescit.getObj( MainActivity.this,view);
 
