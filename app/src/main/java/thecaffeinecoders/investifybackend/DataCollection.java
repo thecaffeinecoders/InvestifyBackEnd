@@ -17,18 +17,4 @@ public class DataCollection {
 
     static ArrayList<CompanyData> listObjAllCompanies = new ArrayList<>();
 
- /*   public static void main(String[] args) throws Exception {
-
-        CompanyData objLynx = Lynx.getObj();
-        CompanyData objExcaliburfonder = Excaliburfonder.getObj();
-        CompanyData objCrescit = Crescit.getObj();
-
-        listObjAllCompanies.add(objLynx);
-
-
-        //listObjAllCompanies.add(objExcaliburfonder);
-        //listObjAllCompanies.add(objCrescit);
-
-    }
-    */
 }
