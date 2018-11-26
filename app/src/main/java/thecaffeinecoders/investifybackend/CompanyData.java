@@ -6,12 +6,13 @@ import java.util.HashMap;
 public class CompanyData {
     String name ;
     String description ;
+    String logoLInk;
     HashMap<String, ArrayList<String>> perfValues ;
 
-    public CompanyData(String name,String description,HashMap<String, ArrayList<String>> perfValues) {
-        this.name= name;
+    public CompanyData(String description,String logoLInk,HashMap<String, ArrayList<String>> perfValues) {
         this.description =description;
         this.perfValues  = perfValues;
+        this.logoLInk = logoLInk;
 
     }
 
