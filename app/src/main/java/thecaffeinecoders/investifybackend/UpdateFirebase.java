@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/* Update The current Month value in Firebase
+/* Update only the current Month value in Firebase
 
  */
 
@@ -50,11 +50,12 @@ public class UpdateFirebase {
                 });
     }
 
-    /* Entire company details like Company Name,Description Logoling All years Monthly profit into FireBase
+    /*  company data details like Company Name,Description Logolink,Url and
+      Monthly profit of 5 years into FireBase(Company Data)
 
      */
 
-    public static void update(String name, String description, String logoLink,String url, CompanyData companyData, final Activity a)
+    public static void update(String name,CompanyData companyData, final Activity a)
 
     {
     final CompanyData lv_companyData = companyData;

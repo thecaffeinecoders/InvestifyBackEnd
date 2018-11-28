@@ -120,7 +120,7 @@ public class Crescit {
             currYear = String.valueOf(cal.get(Calendar.YEAR));
 
 
-            //* Take the current month data from the Arraylist
+            //* Take the current month data from the Arraylist.
 
             for(int cnt=0;cnt<strMonthsList.size();cnt++)
             {
@@ -144,10 +144,10 @@ public class Crescit {
             UpdateFirebase.updateMonth(name,perfValues,currYear, currMnthValue,currMnth, a);
 
         }
-        /* Update data into firebase */
+        /* Update all the data into firebase */
 
         else if (view.getId() == R.id.button3){
-            UpdateFirebase.update(name,description,logoLink,url,companyData,a);
+            UpdateFirebase.update(name,companyData,a);
         }
 
         return companyData;
