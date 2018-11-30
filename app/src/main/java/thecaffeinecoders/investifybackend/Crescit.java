@@ -34,28 +34,25 @@ public class Crescit {
 
         String logoLink = ("https://firebasestorage.googleapis.com/v0/b/investify-2019.appspot.com/o/logotype.png?alt=media&token=b19f4103-ebfb-43ae-b696-51ac92d8b6b2");
 
-
-        String Crescit = "http://www.crescit.se/en/performance/";
-        Document document = Jsoup.connect(Crescit).get();
-
+        /* Supply the Crescit company performance data source from where the data has to be pulled
+        using jsoup library */
+        Document document = Jsoup.connect("http://www.crescit.se/en/performance/").get();
         String CrescitPerformance = document.select("tbody").text();
 
         HashMap<String, ArrayList<String>> perfValues = new HashMap<>();
 
-
-
         String[] sl = CrescitPerformance.split(" ");
 
-       // iterate through last 9 months of 2013
+       // get performance values of last 9 months that are provided for 2013
         for (int i = 26 ; i < 36; i += 14) {
 
             ArrayList<String> strMonthsList = new ArrayList<>();
 
 
             String year = (sl[i]);
-            strMonthsList.add("0".replace("%","").replace(",","."));
-            strMonthsList.add("0".replace("%","").replace(",","."));
-            strMonthsList.add("0".replace("%","").replace(",","."));;
+            strMonthsList.add("0");
+            strMonthsList.add("0");
+            strMonthsList.add("0");
             strMonthsList.add(sl[i + 1].replace("%","").replace(",","."));;
             strMonthsList.add(sl[i + 2].replace("%","").replace(",","."));;
             strMonthsList.add(sl[i + 3].replace("%","").replace(",","."));;
@@ -66,17 +63,14 @@ public class Crescit {
             strMonthsList.add(sl[i + 8].replace("%","").replace(",","."));;
             strMonthsList.add(sl[i + 9].replace("%","").replace(",","."));;
 
-
-
             perfValues.put(year, strMonthsList);
 
         }
 
-
+        //get performance values of previous 4 years
         for (int i = 37 ; i < 92; i += 14) {
 
             ArrayList<String> strMonthsList = new ArrayList<>();
-
 
             String year = (sl[i]);
             strMonthsList.add(sl[i + 1].replace("%","").replace(",","."));;
@@ -95,30 +89,28 @@ public class Crescit {
             perfValues.put(year, strMonthsList);
 
         }
-        //iterate through 1st 10 months of 2018
+        //get performance values of 2018
         for (int i = 93 ; i < 101; i += 14) {
+            Calendar cal = Calendar.getInstance();
+            currMnth = cal.get(Calendar.MONTH);
+            int currYearInt = cal.get(Calendar.YEAR);
+            currYear = String.valueOf(cal.get(Calendar.YEAR));
 
             ArrayList<String> strMonthsList = new ArrayList<>();
 
             String year = (sl[i]);
-            strMonthsList.add(sl[i + 1].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 2].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 3].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 4].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 5].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 6].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 7].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 8].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 9].replace("%","").replace(",","."));;
-            strMonthsList.add(sl[i + 10].replace("%","").replace(",","."));;
-            strMonthsList.add("0".replace("%","").replace(",","."));;
-            strMonthsList.add("0".replace("%","").replace(",","."));;
-
-
-            Calendar cal = Calendar.getInstance();
-            currMnth = cal.get(Calendar.MONTH);
-            currYear = String.valueOf(cal.get(Calendar.YEAR));
-
+            if(currMnth >= 1){strMonthsList.add(sl[i + 1].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 2){strMonthsList.add(sl[i + 2].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 3){strMonthsList.add(sl[i + 3].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 4){strMonthsList.add(sl[i + 4].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 5){strMonthsList.add(sl[i + 5].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 6){strMonthsList.add(sl[i + 6].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 7){strMonthsList.add(sl[i + 7].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 8){strMonthsList.add(sl[i + 8].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 9){strMonthsList.add(sl[i + 9].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth >= 10){strMonthsList.add(sl[i + 10].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth == 11){strMonthsList.add(sl[i + 11].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currMnth == 0 && currYearInt==2019){strMonthsList.add(sl[i + 12].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
 
             //* Take the current month data from the Arraylist
 
@@ -133,7 +125,6 @@ public class Crescit {
             perfValues.put(year, strMonthsList);
 
         }
-
 
         /* Update  only the  current month data into firebase */
 
