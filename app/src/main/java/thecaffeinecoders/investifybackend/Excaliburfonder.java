@@ -36,46 +36,41 @@ public class Excaliburfonder {
 
         String logoLink = ("https://firebasestorage.googleapis.com/v0/b/investify-2019.appspot.com/o/excalibur_fonder.png?alt=media&token=f190c5c5-2674-480b-914e-5a2855bd9a02");
 
-        String Excalibur = "https://excaliburfonder.se/en/funds/excalibur/performance/";
-
-
-        Document document = Jsoup.connect(Excalibur).get();
-
+        /* Supply the Excaliburfonder company performance data source from where the data has to be pulled
+        using jsoup library */
+        Document document = Jsoup.connect("https://excaliburfonder.se/en/funds/excalibur/performance/").get();
         String ExcaliburPerformance = document.select("tbody").text();
 
         HashMap<String, ArrayList<String>> perfValues = new HashMap<>();
 
 
-
         String[] sl = ExcaliburPerformance.split(" ");
 
-        //iterate through 1st 10 months of 2018
+        //get performance values of 2018
         for (int i = 13 ; i < 21; i += 14) {
 
             ArrayList<String> strMonthsList = new ArrayList<>();
 
-
-            String year = (sl[i]);
-            strMonthsList.add(sl[i + 1].replace(",","."));
-            strMonthsList.add(sl[i + 2].replace(",","."));
-            strMonthsList.add(sl[i + 3].replace(",","."));
-            strMonthsList.add(sl[i + 4].replace(",","."));
-            strMonthsList.add(sl[i + 5].replace(",","."));
-            strMonthsList.add(sl[i + 6].replace(",","."));
-            strMonthsList.add(sl[i + 7].replace(",","."));
-            strMonthsList.add(sl[i + 8].replace(",","."));
-            strMonthsList.add(sl[i + 9].replace(",","."));
-            strMonthsList.add(sl[i + 10].replace(",","."));
-            strMonthsList.add("0".replace(",","."));
-            strMonthsList.add("0".replace(",","."));
-
-            perfValues.put(year, strMonthsList);
-
-
             Calendar cal = Calendar.getInstance();
             currMnth = cal.get(Calendar.MONTH);
+            int currYearInt = cal.get(Calendar.YEAR);
             currYear = String.valueOf(cal.get(Calendar.YEAR));
 
+            String year = (sl[i]);
+            if(currMnth >= 1){strMonthsList.add(sl[i + 1].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 2){strMonthsList.add(sl[i + 2].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 3){strMonthsList.add(sl[i + 3].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 4){strMonthsList.add(sl[i + 4].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 5){strMonthsList.add(sl[i + 5].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 6){strMonthsList.add(sl[i + 6].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 7){strMonthsList.add(sl[i + 7].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 8){strMonthsList.add(sl[i + 8].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 9){strMonthsList.add(sl[i + 9].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 10){strMonthsList.add(sl[i + 10].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth == 11){strMonthsList.add(sl[i + 11].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth == 0 && currYearInt==2019){strMonthsList.add(sl[i + 12].replace(",","."));}else{strMonthsList.add("0");}
+
+            perfValues.put(year, strMonthsList);
 
             //* Take the current month data from the Arraylist
 
@@ -89,6 +84,7 @@ public class Excaliburfonder {
 
         }
 
+        //get performance values of previous 4 years
         for (int i = 25 ; i < 85; i += 14) {
 
             ArrayList<String> strMonthsList = new ArrayList<>();
@@ -107,13 +103,9 @@ public class Excaliburfonder {
             strMonthsList.add(sl[i + 11].replace(",","."));
             strMonthsList.add(sl[i + 12].replace(",","."));
 
-
-
             perfValues.put(year, strMonthsList);
 
         }
-
-
 
         /* Update  only the  current month data into firebase */
 

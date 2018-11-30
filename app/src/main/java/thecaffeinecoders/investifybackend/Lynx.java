@@ -47,48 +47,42 @@ public class Lynx {
         String currMnthValue = null,currYear = null;
 
         /* Supply the Lynx company performance data source from where the data has to be pulled
-         */
-
-        String Lynx = "http://www.lynxhedge.se/avkastning--man";
-
-
-
-        Document document = Jsoup.connect(Lynx).get();
+        using jsoup library */
+        Document document = Jsoup.connect("http://www.lynxhedge.se/avkastning--man").get();
         String LynxPerformance = document.select("tbody").text();
 
         HashMap<String, ArrayList<String>> perfValues = new HashMap<>();
 
-
         String[] sl = LynxPerformance.split(" ");
 
-        //Iterate through 1st 10 months of 2018
+        //get performance values of 2018
 
         for (int i = 252 ; i < 266; i += 14) {
+
+            Calendar cal = Calendar.getInstance();
+            currMnth = cal.get(Calendar.MONTH);
+            int currYearInt = cal.get(Calendar.YEAR);
+            currYear = String.valueOf(cal.get(Calendar.YEAR));
 
             ArrayList<String> strMonthsList = new ArrayList<>();
 
             String year = (sl[i]);
-            strMonthsList.add(sl[i + 1].replace(",","."));
-            strMonthsList.add(sl[i + 2].replace(",","."));
-            strMonthsList.add(sl[i + 3].replace(",","."));
-            strMonthsList.add(sl[i + 4].replace(",","."));
-            strMonthsList.add(sl[i + 5].replace(",","."));
-            strMonthsList.add(sl[i + 6].replace(",","."));
-            strMonthsList.add(sl[i + 7].replace(",","."));
-            strMonthsList.add(sl[i + 8].replace(",","."));
-            strMonthsList.add(sl[i + 9].replace(",","."));
-            strMonthsList.add(sl[i + 10].replace(",","."));
-            strMonthsList.add("0".replace(",","."));
-            strMonthsList.add("0".replace(",","."));
-
+            if(currMnth >= 1){strMonthsList.add(sl[i + 1].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 2){strMonthsList.add(sl[i + 2].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 3){strMonthsList.add(sl[i + 3].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 4){strMonthsList.add(sl[i + 4].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 5){strMonthsList.add(sl[i + 5].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 6){strMonthsList.add(sl[i + 6].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 7){strMonthsList.add(sl[i + 7].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 8){strMonthsList.add(sl[i + 8].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 9){strMonthsList.add(sl[i + 9].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth >= 10){strMonthsList.add(sl[i + 10].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth == 11){strMonthsList.add(sl[i + 11].replace(",","."));}else{strMonthsList.add("0");}
+            if(currMnth == 0 && currYearInt==2019){strMonthsList.add(sl[i + 12].replace(",","."));}else{strMonthsList.add("0");}
 
             perfValues.put(year, strMonthsList);
 
         //* get the current month value of year 2018.
-
-            Calendar cal = Calendar.getInstance();
-            currMnth = cal.get(Calendar.MONTH);
-            currYear = String.valueOf(cal.get(Calendar.YEAR));
 
             for(int cnt=0;cnt<strMonthsList.size();cnt++)
             {
@@ -100,8 +94,7 @@ public class Lynx {
 
         }
 
-        //* Pull the previous year data
-
+        //get performance values of previous 5 years
         for (int i = 182; i < 252; i += 14) {
 
             ArrayList<String> strMonthsList = new ArrayList<>();
@@ -121,8 +114,6 @@ public class Lynx {
             strMonthsList.add(sl[i + 12].replace(",","."));
 
             perfValues.put(year, strMonthsList);
-
-
 
         }
 
