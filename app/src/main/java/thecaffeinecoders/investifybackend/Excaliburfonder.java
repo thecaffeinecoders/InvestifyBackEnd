@@ -127,7 +127,7 @@ public class Excaliburfonder {
         /* Update data into firebase */
 
         else if (view.getId() == R.id.button3){
-            UpdateFirebase.update(name,description,logoLink,url,companyData,a);
+            UpdateFirebase.update(name,companyData,a);
         }
 
         return companyData;
