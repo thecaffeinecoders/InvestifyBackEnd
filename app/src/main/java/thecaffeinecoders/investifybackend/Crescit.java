@@ -1,6 +1,4 @@
 
-/* Pull data from Crescit */
-
 package thecaffeinecoders.investifybackend;
 
 import android.app.Activity;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+/** Pull data from Crescit */
 public class Crescit {
 
 
@@ -91,28 +90,30 @@ public class Crescit {
         }
         //get performance values of 2018
         for (int i = 93 ; i < 101; i += 14) {
+
             Calendar cal = Calendar.getInstance();
             currMnth = cal.get(Calendar.MONTH);
             int currYearInt = cal.get(Calendar.YEAR);
+            int currDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
             currYear = String.valueOf(cal.get(Calendar.YEAR));
 
             ArrayList<String> strMonthsList = new ArrayList<>();
 
             String year = (sl[i]);
-            if(currMnth >= 1){strMonthsList.add(sl[i + 1].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 2){strMonthsList.add(sl[i + 2].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 3){strMonthsList.add(sl[i + 3].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 4){strMonthsList.add(sl[i + 4].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 5){strMonthsList.add(sl[i + 5].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 6){strMonthsList.add(sl[i + 6].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 7){strMonthsList.add(sl[i + 7].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 8){strMonthsList.add(sl[i + 8].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 9){strMonthsList.add(sl[i + 9].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth >= 10){strMonthsList.add(sl[i + 10].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
-            if(currMnth == 11){strMonthsList.add(sl[i + 11].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 39){strMonthsList.add(sl[i + 1].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 67){strMonthsList.add(sl[i + 2].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 98){strMonthsList.add(sl[i + 3].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 128){strMonthsList.add(sl[i + 4].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 159){strMonthsList.add(sl[i + 5].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 189){strMonthsList.add(sl[i + 6].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 220){strMonthsList.add(sl[i + 7].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 251){strMonthsList.add(sl[i + 8].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 281){strMonthsList.add(sl[i + 9].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 312){strMonthsList.add(sl[i + 10].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 342){strMonthsList.add(sl[i + 11].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
             if(currMnth == 0 && currYearInt==2019){strMonthsList.add(sl[i + 12].replace(",",".").replace("%",""));}else{strMonthsList.add("0");}
 
-            //* Take the current month data from the Arraylist.
+            // Take the current month data from the Arraylist.
 
             for(int cnt=0;cnt<strMonthsList.size();cnt++)
             {

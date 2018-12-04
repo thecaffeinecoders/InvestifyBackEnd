@@ -1,5 +1,3 @@
-/* Pull data from LYNX */
-
 
 package thecaffeinecoders.investifybackend;
 
@@ -23,6 +21,7 @@ import java.util.Map;
 import java.util.jar.Attributes;
 import java.util.*;
 
+/** Pull data from LYNX */
 public class Lynx {
 
 
@@ -62,27 +61,28 @@ public class Lynx {
             Calendar cal = Calendar.getInstance();
             currMnth = cal.get(Calendar.MONTH);
             int currYearInt = cal.get(Calendar.YEAR);
+            int currDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
             currYear = String.valueOf(cal.get(Calendar.YEAR));
 
             ArrayList<String> strMonthsList = new ArrayList<>();
 
             String year = (sl[i]);
-            if(currMnth >= 1){strMonthsList.add(sl[i + 1].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 2){strMonthsList.add(sl[i + 2].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 3){strMonthsList.add(sl[i + 3].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 4){strMonthsList.add(sl[i + 4].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 5){strMonthsList.add(sl[i + 5].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 6){strMonthsList.add(sl[i + 6].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 7){strMonthsList.add(sl[i + 7].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 8){strMonthsList.add(sl[i + 8].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 9){strMonthsList.add(sl[i + 9].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth >= 10){strMonthsList.add(sl[i + 10].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth == 11){strMonthsList.add(sl[i + 11].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 39){strMonthsList.add(sl[i + 1].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 67){strMonthsList.add(sl[i + 2].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 98){strMonthsList.add(sl[i + 3].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 128){strMonthsList.add(sl[i + 4].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 159){strMonthsList.add(sl[i + 5].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 189){strMonthsList.add(sl[i + 6].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 220){strMonthsList.add(sl[i + 7].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 251){strMonthsList.add(sl[i + 8].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 281){strMonthsList.add(sl[i + 9].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 312){strMonthsList.add(sl[i + 10].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 342){strMonthsList.add(sl[i + 11].replace(",","."));}else{strMonthsList.add("0");}
             if(currMnth == 0 && currYearInt==2019){strMonthsList.add(sl[i + 12].replace(",","."));}else{strMonthsList.add("0");}
 
             perfValues.put(year, strMonthsList);
 
-        //* get the current month value of year 2018.
+        // get the current month value of year 2018.
 
             for(int cnt=0;cnt<strMonthsList.size();cnt++)
             {
