@@ -78,7 +78,7 @@ public class Lynx {
             if(currDayOfYear >= 281){strMonthsList.add(sl[i + 9].replace(",","."));}else{strMonthsList.add("0");}
             if(currDayOfYear >= 312){strMonthsList.add(sl[i + 10].replace(",","."));}else{strMonthsList.add("0");}
             if(currDayOfYear >= 342){strMonthsList.add(sl[i + 11].replace(",","."));}else{strMonthsList.add("0");}
-            if(currMnth == 0 && currYearInt==2019){strMonthsList.add(sl[i + 12].replace(",","."));}else{strMonthsList.add("0");}
+            if(currDayOfYear >= 8 && currYearInt==2019){strMonthsList.add(sl[i + 12].replace(",","."));}else{strMonthsList.add("0");}
 
             perfValues.put(year, strMonthsList);
 
