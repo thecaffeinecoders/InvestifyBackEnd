@@ -13,11 +13,11 @@
 - Fetch data from websites ,mainly using Jsoup Java HTML Parse library
 - Processing it to become usable java objects .
 - Write it into a specific Data Structure in Firebase:  
-  *1. Company name*  
-  *2. Company description*  
-  *3. Company Logo*  
-  *4. URL*  
-  *5. Performance value of past 5 years(monthly)*  
+  *- Company name*  
+  *- Company description*  
+  *- Company Logo*  
+  *- URL*  
+  *- Performance value of past 5 years(monthly)*  
 
 ## Authors
 
