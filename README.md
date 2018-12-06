@@ -4,7 +4,7 @@
 
 * **InvestifyBackend** is an Android app used by developers to take care of data fetching ,processing and then writing into Firebase.
 * **Investify** is an Android app that is designed to be a gateway for users to invest in asset management firms. 
-*[Investify](https://github.com/thecaffeinecoders/Investify)
+*[Investify](https://github.com/thecaffeinecoders/Investify)  
 
 #### @version v1.0
 
@@ -12,13 +12,12 @@
 
 - Fetch data from websites ,mainly using Jsoup Java HTML Parse library
 - Processing it to become usable java objects .
-- Write it into a specific Data Structure in Firebase :
-
-1.  Company name
-2.  Company description
-3.  Company Logo    
-4.  URL
-5.  Performance value of past 5 years(monthly)
+- Write it into a specific Data Structure in Firebase:  
+  *1. Company name*  
+  *2. Company description*  
+  *3. Company Logo*  
+  *4. URL*  
+  *5. Performance value of past 5 years(monthly)*  
 
 ## Authors
 
